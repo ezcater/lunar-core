@@ -81,7 +81,11 @@ describe('Mock', () => {
         stringValue
       }
     }`;
-    const {data: {fooInstance: {stringValue}}} = await graphql(schema, testQuery);
+    const {
+      data: {
+        fooInstance: {stringValue},
+      },
+    } = await graphql(schema, testQuery);
     expect(stringValue).toEqual('baz');
   });
 
@@ -101,8 +105,12 @@ describe('Mock', () => {
           stringValue
         }
       }`;
-      const {data: {fooInstance}} = await graphql(schema, testQuery);
-      const {data: {fooInstance: fooInstance2}} = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance},
+      } = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance: fooInstance2},
+      } = await graphql(schema, testQuery);
       expect(fooInstance).toEqual(fooInstance2);
     });
 
@@ -115,8 +123,12 @@ describe('Mock', () => {
           stringValue
         }
       }`;
-      const {data: {fooInstance}} = await graphql(schema, testQuery);
-      const {data: {fooInstance: fooInstance2}} = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance},
+      } = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance: fooInstance2},
+      } = await graphql(schema, testQuery);
       expect(fooInstance).toEqual(fooInstance2);
     });
   });
@@ -138,7 +150,9 @@ describe('Mock', () => {
 
     removeMockFunctionsFromSchema({schema, mocks});
 
-    const {data: {fooInstance}} = await graphql(schema, testQuery);
+    const {
+      data: {fooInstance},
+    } = await graphql(schema, testQuery);
     expect(fooInstance).toEqual(null);
   });
 
@@ -168,7 +182,9 @@ describe('Mock', () => {
           }
         }
       }`;
-      const {data: {fooInstance}} = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance},
+      } = await graphql(schema, testQuery);
       expect(fooInstance.stringValue).toEqual('Hello World');
       expect(fooInstance.bar.stringValue).toEqual('bar');
     });
@@ -202,7 +218,9 @@ describe('Mock', () => {
           }
         }
       }`;
-      const {data: {fooInstance}} = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance},
+      } = await graphql(schema, testQuery);
       expect(fooInstance.stringValue).toEqual('foo');
       expect(fooInstance.bar.stringValue).toEqual('bar');
     });
@@ -230,7 +248,9 @@ describe('Mock', () => {
         }
       `;
 
-      const {data: {returnStringArgument, returnIntArgument}} = await graphql(schema, testQuery);
+      const {
+        data: {returnStringArgument, returnIntArgument},
+      } = await graphql(schema, testQuery);
 
       expect(returnStringArgument).toEqual('adieu');
       expect(returnIntArgument).toEqual(6);
@@ -259,11 +279,15 @@ describe('Mock', () => {
         }
       }`;
 
-      const {data: {fooInstance}} = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance},
+      } = await graphql(schema, testQuery);
 
       addMockFunctionsToSchema({schema, mocks: [left, right]});
 
-      const {data: {fooInstance: fooInstance2}} = await graphql(schema, testQuery);
+      const {
+        data: {fooInstance: fooInstance2},
+      } = await graphql(schema, testQuery);
 
       expect(fooInstance).toEqual(fooInstance2);
     });
@@ -301,7 +325,9 @@ describe('Mock', () => {
           intValue
         }
       }`;
-        const {data: {fooInstance}} = await graphql(schema, testQuery);
+        const {
+          data: {fooInstance},
+        } = await graphql(schema, testQuery);
         expect(fooInstance.stringValue).toEqual('bar');
         expect(fooInstance.boolValue).toEqual(true);
         expect(fooInstance.intValue).toEqual(56);
@@ -337,7 +363,9 @@ describe('Mock', () => {
           intValue
         }
       }`;
-        const {data: {fooInstance}} = await graphql(schema, testQuery);
+        const {
+          data: {fooInstance},
+        } = await graphql(schema, testQuery);
         expect(fooInstance).toBeNull();
       });
     });
