@@ -22,7 +22,7 @@ jobs:
           name: Lint Validation
           command: npm run lint
       - run:
-          name: Units Tests
+          name: Unit Tests
           command: npx jest
       - run:
           name: Danger
