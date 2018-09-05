@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: 23a22729dd8d85141b6ee3f37d64bf8799617db86acb5e5fbb2d12c4541137f3
     docker:
       - image: circleci/node:9.5
     working_directory: ~/lunar-core
@@ -22,5 +24,14 @@ jobs:
           name: Lint Validation
           command: npm run lint
       - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            wget -O cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+      - run:
           name: Unit Tests
-          command: npx jest
+          command: npx jest --coverage --env=jsdom
+      - run:
+          name: Code Climate Test Coverage
+          command: ./cc-test-reporter after-build
