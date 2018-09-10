@@ -94,7 +94,6 @@ describe('Mock', () => {
       const schema = buildSchemaFromTypeDefinitions(schemaString);
       const mocks = {
         Foo: () => ({
-          id: Math.random(),
           stringValue: 'baz',
         }),
       };
@@ -111,6 +110,7 @@ describe('Mock', () => {
       const {
         data: {fooInstance: fooInstance2},
       } = await graphql(schema, testQuery);
+      expect(fooInstance.stringValue).toEqual('baz');
       expect(fooInstance).toEqual(fooInstance2);
     });
 
@@ -161,13 +161,11 @@ describe('Mock', () => {
       const schema = buildSchemaFromTypeDefinitions(schemaString);
       const fooMocks = {
         Foo: () => ({
-          id: Math.random(),
           stringValue: 'foo',
         }),
       };
       const barMocks = {
         Bar: () => ({
-          id: Math.random(),
           stringValue: 'bar',
         }),
       };
@@ -191,17 +189,15 @@ describe('Mock', () => {
   });
 
   describe('combining mocks', () => {
-    it("let's you mock combine mocks for different types", async () => {
+    it("let's you combine mocks for different types", async () => {
       const schema = buildSchemaFromTypeDefinitions(schemaString);
       const fooMocks = {
         Foo: () => ({
-          id: Math.random(),
           stringValue: 'foo',
         }),
       };
       const barMocks = {
         Bar: () => ({
-          id: Math.random(),
           stringValue: 'bar',
         }),
       };
@@ -260,7 +256,6 @@ describe('Mock', () => {
       const schema = buildSchemaFromTypeDefinitions(schemaString);
       const left = {
         Foo: () => ({
-          id: Math.random(),
           stringValue: 'baz',
         }),
       };
@@ -297,7 +292,6 @@ describe('Mock', () => {
         const schema = buildSchemaFromTypeDefinitions(schemaString);
         const fooMocksBase = {
           Foo: () => ({
-            id: Math.random(),
             stringValue: 'foo',
             boolValue: true,
             intValue: 54,
@@ -337,7 +331,6 @@ describe('Mock', () => {
         const schema = buildSchemaFromTypeDefinitions(schemaString);
         const fooMocksBase = {
           Foo: () => ({
-            id: Math.random(),
             stringValue: 'foo',
             boolValue: true,
             intValue: 54,
@@ -375,7 +368,6 @@ describe('Mock', () => {
     it("provides find function to query resolver's context argument", async () => {
       const schema = buildSchemaFromTypeDefinitions(schemaString);
       const fooResolver = jest.fn(() => ({
-        id: Math.random(),
         stringValue: 'foo',
       }));
       const mocks = {
