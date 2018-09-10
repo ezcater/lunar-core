@@ -14,7 +14,7 @@ const schemaString = `
     bar: Bar
   }
   type Bar {
-    id: String!
+    id: ID!
     stringValue: String
   }
   type RootQuery {
@@ -22,7 +22,7 @@ const schemaString = `
     stringValue: String
     boolValue: Boolean
     fooInstance: Foo
-    fooById(id:String!): Foo
+    fooById(id: ID!): Foo
   }
   type RootMutation {
     returnIntArgument(i: Int): Int
