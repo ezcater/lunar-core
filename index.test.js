@@ -337,25 +337,20 @@ describe('Mock', () => {
           }),
         };
         const fooMocksOverrideOne = {
-          Foo: () => ({
-            stringValue: 'bar',
-          }),
-        };
-        const fooMocksOverrideTwo = {
           Foo: () => null,
         };
         addMockFunctionsToSchema({
           schema,
-          mocks: [fooMocksBase, fooMocksOverrideOne, fooMocksOverrideTwo],
+          mocks: [fooMocksBase, fooMocksOverrideOne],
         });
         const testQuery = `{
-        fooInstance {
-          id
-          stringValue
-          boolValue
-          intValue
-        }
-      }`;
+          fooInstance {
+            id
+            stringValue
+            boolValue
+            intValue
+          }
+        }`;
         const {
           data: {fooInstance},
         } = await graphql(schema, testQuery);
