@@ -24,6 +24,3 @@ jobs:
       - run:
           name: Unit Tests
           command: npx jest
-      - run:
-          name: Danger
-          command: npx danger ci
