@@ -33,10 +33,12 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.15.0",
     "eslint_d": "^5.2.2",
+    "graphql": "^14.0.2",
+    "graphql-tools": "^3.1.1",
     "jest": "^22.4.2"
   },
   "peerDependencies": {
-    "graphql": "0.x",
-    "graphql-tools": "2.x"
+    "graphql": "^14.0.2",
+    "graphql-tools": "^3.1.1"
   }
 }
