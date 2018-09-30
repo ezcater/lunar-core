@@ -1,4 +1,4 @@
-e![CircleCI](https://circleci.com/gh/ezcater/lunar-core/tree/master.svg?style=svg)](https://circleci.com/gh/ezcater/lunar-core/tree/master)
+[![CircleCI](https://circleci.com/gh/ezcater/lunar-core/tree/master.svg?style=svg)](https://circleci.com/gh/ezcater/lunar-core/tree/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f7a71a45af56cfa68e24/maintainability)](https://codeclimate.com/github/ezcater/lunar-core/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f7a71a45af56cfa68e24/test_coverage)](https://codeclimate.com/github/ezcater/lunar-core/test_coverage)
 
