@@ -34,7 +34,7 @@
     "eslint_d": "^7.2.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.1.1",
-    "jest": "^24.0.0"
+    "jest": "^25.5.2"
   },
   "peerDependencies": {
     "graphql": "^14.0.2",
