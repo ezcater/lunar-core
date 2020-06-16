@@ -71,3 +71,6 @@ release based on all changes that will be included.
 MIT License. Copyright 2018 ezCater, Inc. https://www.ezcater.com
 
 You are not granted rights or licenses to the trademarks of ezCater, including without limitation it's name or logo.
+
+## Alex 
+Was Here
