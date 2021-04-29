@@ -1,0 +1,17 @@
+version: 2
+registries:
+  npm-registry-ezcater-jfrog-io-ezcater-api-npm-npm:
+    type: npm-registry
+    url: https://ezcater.jfrog.io/ezcater/api/npm/npm
+    username: "${{secrets.NPM_REGISTRY_EZCATER_JFROG_IO_EZCATER_API_NPM_NPM_USERNAME}}"
+    password: "${{secrets.NPM_REGISTRY_EZCATER_JFROG_IO_EZCATER_API_NPM_NPM_PASSWORD}}"
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "06:00"
+  open-pull-requests-limit: 10
+  registries:
+  - npm-registry-ezcater-jfrog-io-ezcater-api-npm-npm
