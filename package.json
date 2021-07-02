@@ -1,6 +1,6 @@
 {
   "name": "lunar-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tools to assist with mocking GraphQL schemas",
   "main": "index.js",
   "scripts": {
