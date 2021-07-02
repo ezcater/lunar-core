@@ -20,14 +20,8 @@ exports.addMockFunctionsToSchema = ({schema, mocks: mocksIn = {}, preserveResolv
 
   const {clear, find, reset, track} = store(schema);
 
-  const MutationTypeName = schema.getMutationType().name;
-
-  forEachField(schema, (field, typeName) => {
-    const wrappers = [addToContext({clear, find, reset})];
-
-    if (typeName !== MutationTypeName) {
-      wrappers.unshift(track);
-    }
+  forEachField(schema, (field) => {
+    const wrappers = [track, addToContext({clear, find, reset})];
 
     field.resolve = compose(...wrappers)(field.resolve);
   });

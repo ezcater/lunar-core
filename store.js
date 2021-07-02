@@ -4,17 +4,34 @@ const get = (wm, key, creator) => (wm.has(key) ? wm.get(key) : create(wm, key, c
 const stores = new WeakMap();
 const root = {};
 
-const store = schema => {
-  const track = generator => (...args) => {
+const store = (schema) => {
+  const track = (generator) => (...args) => {
     const [obj, , , info] = args;
+
     const entities = get(stores, schema, () => new WeakMap());
+
+    // naive support for tracking mutation results
+    const isMutation = info.operation.operation === 'mutation';
+    if (isMutation) {
+      const childMap = get(entities, root, () => new Map());
+
+      // not sure how or whether this will support multiple selections returned
+      const selection = info.operation.selectionSet.selections.find(({kind}) => kind === 'Field');
+
+      const mutationResult = get(childMap, selection.name.value, () => ({}));
+
+      const value = generator(...args);
+      mutationResult[info.fieldName] = value;
+      return value;
+    }
+
     const childMap = get(entities, obj || root, () => new Map());
     return get(childMap, info.fieldName, () => generator(...args));
   };
 
   const reset = () => stores.delete(schema);
 
-  const find = path => {
+  const find = (path) => {
     const entities = stores.get(schema);
 
     if (!entities) return;
@@ -23,7 +40,7 @@ const store = schema => {
       if (!obj) return;
 
       if (Array.isArray(obj)) {
-        return obj.map(x => entities.get(x)).map(x => x && x.get(fieldName));
+        return obj.map((x) => entities.get(x)).map((x) => x && x.get(fieldName));
       }
 
       const childMap = entities.get(obj);
@@ -34,7 +51,7 @@ const store = schema => {
     }, root);
   };
 
-  const clear = path => {
+  const clear = (path) => {
     const i = path.lastIndexOf('.');
     const obj = i < 0 ? root : find(path.slice(0, i));
 
